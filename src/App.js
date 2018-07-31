@@ -80,7 +80,7 @@ class App extends Component {
           <Row>
             <Sidebar />
             <Col role="main" className="col-md-10 ml-sm-auto px-4">
-              <Row className="pt-4">
+              <Row className="pt-5">
                 {this.state.movies.map(movie => {
                   return <Movie key={movie.id} movie={movie} />;
                 })}

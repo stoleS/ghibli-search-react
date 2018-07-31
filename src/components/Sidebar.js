@@ -7,7 +7,7 @@ class Sidebar extends Component {
   render() {
     return (
       <Nav className="col-md-2 d-none d-md-block bg-dark-blue sidebar">
-        <div className="sidebar-sticky">
+        <div className="sidebar-sticky pt-5">
           <Nav className="flex-column">
             <NavItem>
               <NavLink active href="#" className="mint-text">

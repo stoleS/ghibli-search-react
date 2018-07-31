@@ -6,8 +6,8 @@ class Movie extends Component {
   render() {
     const title = this.props.movie.title;
     return (
-      <Col md="3" sm="4" xs="6" className="mb-4">
-        <Card className="h-100">
+      <Col md="3" sm="4" xs="6" className="mb-5">
+        <Card className="h-100 shadow">
           <CardImg
             top
             width="100%"
