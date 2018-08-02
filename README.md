@@ -28,16 +28,8 @@ $ npm run build
 
 ## Meta
 
-Predrag Stošić – predragstosic29@gmail.com
+Predrag Stošić – predragstosic29@gmail.com - [stoleS](https://github.com/stoleS)
 
-Distributed under the MIT license. See `LICENSE` for more information.
+## License
 
-[https://github.com/stoleS/ghibli-search-react/blob/master/LICENSE](https://github.com/stoleS/)
-
-## Contributing
-
-1. Fork it (<https://github.com/stoleS/ghibli-search-react/fork>)
-2. Create your feature branch (`git checkout -b feature/fooBar`)
-3. Commit your changes (`git commit -am 'Add some fooBar'`)
-4. Push to the branch (`git push origin feature/fooBar`)
-5. Create a new Pull Request
+This project is licensed under the MIT License - see the [https://github.com/stoleS/ghibli-search-react/blob/master/LICENSE](LICENSE.md) file for details
