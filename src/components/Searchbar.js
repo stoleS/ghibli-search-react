@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "../App.css";
 import { Navbar, NavbarBrand, Nav, NavItem, NavLink, Input } from "reactstrap";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 class SearchBar extends Component {
   handleSearch = e => {
@@ -16,7 +17,7 @@ class SearchBar extends Component {
           className="navbar-dark fixed-top bg-imperial flex-md-nowrap p-0 shadow"
         >
           <NavbarBrand href="/" className="col-sm-3 col-md-2 mr-0">
-            Ghibli Search
+            <FontAwesomeIcon icon="search" /> Ghibli Search
           </NavbarBrand>
           <Input
             type="text"

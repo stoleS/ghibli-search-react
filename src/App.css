@@ -28,6 +28,12 @@ body {
   border-radius: 0 !important;
 }
 
+.nav-link {
+  padding: 0.8rem 1rem !important;
+  font-size: 0.9rem;
+  font-weight: bold;
+}
+
 .nav-item a:hover {
   background-color: var(--imperial);
 }
@@ -117,12 +123,24 @@ body {
   text-transform: uppercase;
 }
 
+.dropdown-divider {
+  margin-left: 1rem !important;
+  margin-right: 1rem !important;
+  margin-top: 2rem !important;
+  border-top: 2px solid var(--onyx) !important;
+}
+
 /*
  * Content
  */
 
 [role="main"] {
   padding-top: 48px; /* Space for fixed navbar */
+}
+
+.main {
+  padding-left: 50px !important;
+  padding-right: 50px !important;
 }
 
 /*
@@ -135,6 +153,13 @@ body {
 
 .movie-title {
   color: var(--mint-cream) !important;
+  margin-bottom: 0.5rem;
+  line-height: 1;
+  font-size: 0.9rem;
+}
+
+.movie-subtitle {
+  font-size: 0.75rem;
 }
 
 .card-container {
@@ -155,8 +180,34 @@ body {
 }
 
 .rating-badge {
-  width: 2rem;
+  width: 2.5rem;
   position: relative;
   transform: translateY(-50%);
   margin: 0 auto;
+  background-color: var(--imperial) !important;
+  font-size: 80% !important;
+  padding: 0.5em 0.4em !important;
+  color: var(--mint-cream);
+}
+
+.movie-counter-badge {
+  margin-left: 0.3rem;
+  padding: 0.25em 0.4em !important;
+  background-color: var(--onyx);
+  color: var(--mint-cream);
+}
+
+.form-group {
+  padding: 0.8rem 1rem !important;
+  color: var(--mint-cream);
+  font-size: 0.9rem;
+}
+
+.form-group label {
+  line-height: 1.9;
+  cursor: pointer;
+}
+
+.form-check-label {
+  padding-bottom: 0.3rem !important;
 }

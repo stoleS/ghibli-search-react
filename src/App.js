@@ -10,11 +10,23 @@ import {
   faUsers,
   faMapMarkerAlt,
   faKiwiBird,
-  faCar
+  faCar,
+  faSearch,
+  faArrowUp,
+  faArrowDown
 } from "@fortawesome/free-solid-svg-icons";
 import "./App.css";
 
-library.add(faFilm, faUsers, faMapMarkerAlt, faKiwiBird, faCar);
+library.add(
+  faFilm,
+  faUsers,
+  faMapMarkerAlt,
+  faKiwiBird,
+  faCar,
+  faSearch,
+  faArrowUp,
+  faArrowDown
+);
 
 class App extends Component {
   constructor(props) {
@@ -78,9 +90,9 @@ class App extends Component {
         <SearchBar onSearch={this.onSearch} />
         <Container fluid>
           <Row>
-            <Sidebar />
-            <Col role="main" className="col-md-10 ml-sm-auto px-4">
-              <Row className="pt-5">
+            <Sidebar movies={this.state.filterMovies} />
+            <Col role="main" className="col-md-10 ml-sm-auto main">
+              <Row className="pt-4">
                 {this.state.movies.map(movie => {
                   return <Movie key={movie.id} movie={movie} />;
                 })}

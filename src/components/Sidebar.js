@@ -1,6 +1,15 @@
 import React, { Component } from "react";
 import "../App.css";
-import { Nav, NavItem, NavLink } from "reactstrap";
+import {
+  Nav,
+  NavItem,
+  NavLink,
+  DropdownItem,
+  Badge,
+  Input,
+  FormGroup,
+  Label
+} from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 class Sidebar extends Component {
@@ -13,6 +22,9 @@ class Sidebar extends Component {
               <NavLink active href="#" className="mint-text">
                 <FontAwesomeIcon icon="film" />
                 All movies
+                <Badge className="movie-counter-badge">
+                  {this.props.movies.length}
+                </Badge>
               </NavLink>
             </NavItem>
             <NavItem>
@@ -39,6 +51,34 @@ class Sidebar extends Component {
                 Vehicles
               </NavLink>
             </NavItem>
+            <DropdownItem divider />
+            <FormGroup>
+              <Label for="exampleCheckbox">Sort by:</Label>
+              <FormGroup check>
+                <Label check>
+                  <Input type="radio" name="radio2" /> Year{" "}
+                  <FontAwesomeIcon icon="arrow-up" />
+                </Label>
+              </FormGroup>
+              <FormGroup check>
+                <Label check>
+                  <Input type="radio" name="radio2" /> Year{" "}
+                  <FontAwesomeIcon icon="arrow-down" />
+                </Label>
+              </FormGroup>
+              <FormGroup check>
+                <Label check>
+                  <Input type="radio" name="radio2" /> Rating{" "}
+                  <FontAwesomeIcon icon="arrow-up" />
+                </Label>
+              </FormGroup>
+              <FormGroup check>
+                <Label check>
+                  <Input type="radio" name="radio2" /> Rating{" "}
+                  <FontAwesomeIcon icon="arrow-down" />
+                </Label>
+              </FormGroup>
+            </FormGroup>
           </Nav>
         </div>
       </Nav>
