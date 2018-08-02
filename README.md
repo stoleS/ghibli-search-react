@@ -28,8 +28,8 @@ $ npm run build
 
 ## Meta
 
-Predrag Stošić – predragstosic29@gmail.com - [stoleS](https://github.com/stoleS)
+Predrag Stošić - [stoleS](https://github.com/stoleS) - predragstosic29@gmail.com
 
 ## License
 
-This project is licensed under the MIT License - see the [https://github.com/stoleS/ghibli-search-react/blob/master/LICENSE](LICENSE.md) file for details
+This project is licensed under the MIT License - see the [LICENSE.md](https://github.com/stoleS/ghibli-search-react/blob/master/LICENSE) file for details.
