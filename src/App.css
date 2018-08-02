@@ -6,7 +6,7 @@
   --rich-black: #2f243a;
   --onyx: #444054;
   --imperial: #55286f;
-  --isabelline: #eaeaea;
+  --isabelline: #4a455b;
   --mint-cream: #f1fffa;
 }
 
@@ -133,17 +133,30 @@ body {
   color: var(--rich-black);
 }
 
+.movie-title {
+  color: var(--mint-cream) !important;
+}
+
+.card-container {
+  transition: box-shadow, background-color 0.2s ease-in-out;
+  padding: 25px !important;
+}
+
 .card {
   border-radius: 0 !important;
   cursor: pointer;
   border: none !important;
+  background-color: transparent !important;
 }
 
-.card-img-top {
-  border-top-left-radius: 0 !important;
-  border-top-right-radius: 0 !important;
-}
-
-.card:hover {
+.card-container:hover {
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+  background-color: var(--isabelline);
+}
+
+.rating-badge {
+  width: 2rem;
+  position: relative;
+  transform: translateY(-50%);
+  margin: 0 auto;
 }
