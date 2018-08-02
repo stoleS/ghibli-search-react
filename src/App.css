@@ -8,6 +8,7 @@
   --imperial: #55286f;
   --isabelline: #4a455b;
   --mint-cream: #f1fffa;
+  --rose: #d90368;
 }
 
 body {
@@ -184,7 +185,7 @@ body {
   position: relative;
   transform: translateY(-50%);
   margin: 0 auto;
-  background-color: var(--imperial) !important;
+  background-color: var(--rose) !important;
   font-size: 80% !important;
   padding: 0.5em 0.4em !important;
   color: var(--mint-cream);
@@ -210,4 +211,16 @@ body {
 
 .form-check-label {
   padding-bottom: 0.3rem !important;
+}
+
+/*
+ * People
+ */
+
+.table-dark {
+  background-color: var(--rich-black) !important;
+}
+
+th {
+  border-color: var(--onyx) !important;
 }

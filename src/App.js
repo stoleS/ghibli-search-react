@@ -3,6 +3,7 @@ import update from "immutability-helper";
 import SearchBar from "./components/Searchbar";
 import Sidebar from "./components/Sidebar";
 import Movie from "./components/Movie";
+import Person from "./components/Person";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { Container, Row, Col } from "reactstrap";
 import {
@@ -34,8 +35,10 @@ class App extends Component {
     this.state = {
       movies: [],
       filterMovies: [],
+      people: [],
       search: "",
-      isLoading: false
+      isLoading: false,
+      menuChoice: "people"
     };
   }
 
@@ -46,8 +49,8 @@ class App extends Component {
       .then(res => res.json())
       .then(data =>
         this.setState({ movies: data, filterMovies: data, isLoading: false })
-      )
-      .then(() =>
+      );
+    /* .then(() =>
         this.state.movies.forEach((element, i) => {
           const urlImage = `https://kitsu.io/api/edge/anime?filter[text]=${
             element.title
@@ -69,7 +72,7 @@ class App extends Component {
               })
             );
         })
-      );
+      ); */
   }
 
   onSearch = e =>
@@ -80,23 +83,50 @@ class App extends Component {
       )
     });
 
+  handleMenu = choice => {
+    this.setState({ menuChoice: choice });
+  };
+
+  fetchPeople = () => {
+    if (this.state.people.length === 0) {
+      const people = "https://ghibliapi.herokuapp.com/people/";
+      fetch(people)
+        .then(res => res.json())
+        .then(data => this.setState({ people: data }));
+    }
+  };
+
   render() {
     const isLoading = this.state.isLoading;
+
     if (isLoading) {
       return <p>Loading ...</p>;
     }
+
+    const menu = this.state.menuChoice;
+    let main;
+    if (menu === "all") {
+      main = this.state.movies.map(movie => {
+        return <Movie key={movie.id} movie={movie} />;
+      });
+    } else if (menu === "people") {
+      main = (
+        <Person fetchPeople={this.fetchPeople} people={this.state.people} />
+      );
+    }
+
     return (
       <div>
         <SearchBar onSearch={this.onSearch} />
         <Container fluid>
           <Row>
-            <Sidebar movies={this.state.filterMovies} />
+            <Sidebar
+              selected={this.state.menuChoice}
+              moviesNumber={this.state.filterMovies.length}
+              handleMenu={this.handleMenu}
+            />
             <Col role="main" className="col-md-10 ml-sm-auto main">
-              <Row className="pt-4">
-                {this.state.movies.map(movie => {
-                  return <Movie key={movie.id} movie={movie} />;
-                })}
-              </Row>
+              <Row className="pt-4">{main}</Row>
             </Col>
           </Row>
         </Container>

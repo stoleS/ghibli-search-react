@@ -4,11 +4,6 @@ import { Navbar, NavbarBrand, Nav, NavItem, NavLink, Input } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 class SearchBar extends Component {
-  handleSearch = e => {
-    this.props.onSearch(e.target.value);
-    this.setState({ search: e.target.value });
-  };
-
   render() {
     return (
       <div>
