@@ -1,6 +1,6 @@
 # Ghibli Search
 
-> Get info on all Studio Ghibli movies, characters, locations etc. APIs provided by Studio Ghibli & Kitsu.
+> Get info on all Studio Ghibli movies, characters, locations etc. APIs provided by Studio Ghibli & Kitsu. (WIP)
 
 ![](ghibli-search.png)
 
