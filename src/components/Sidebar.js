@@ -43,6 +43,9 @@ class Sidebar extends Component {
               >
                 <FontAwesomeIcon icon="users" />
                 People
+                <Badge className="movie-counter-badge">
+                  {this.props.peoplesNumber}
+                </Badge>
               </NavLink>
             </NavItem>
             <NavItem>
@@ -55,30 +58,9 @@ class Sidebar extends Component {
               >
                 <FontAwesomeIcon icon="map-marker-alt" />
                 Locations
-              </NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink
-                href="#"
-                className={`mint-text ${
-                  this.props.selected === "species" ? "active" : ""
-                }`}
-                onClick={() => this.props.handleMenu("species")}
-              >
-                <FontAwesomeIcon icon="kiwi-bird" />
-                Species
-              </NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink
-                href="#"
-                className={`mint-text ${
-                  this.props.selected === "vehicles" ? "active" : ""
-                }`}
-                onClick={() => this.props.handleMenu("vehicles")}
-              >
-                <FontAwesomeIcon icon="car" />
-                Vehicles
+                <Badge className="movie-counter-badge">
+                  {this.props.locationsNumber}
+                </Badge>
               </NavLink>
             </NavItem>
             <DropdownItem divider />

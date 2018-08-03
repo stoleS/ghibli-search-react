@@ -4,30 +4,20 @@ import SearchBar from "./components/Searchbar";
 import Sidebar from "./components/Sidebar";
 import Movie from "./components/Movie";
 import Person from "./components/Person";
+import Location from "./components/Location";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { Container, Row, Col } from "reactstrap";
 import {
   faFilm,
   faUsers,
   faMapMarkerAlt,
-  faKiwiBird,
-  faCar,
   faSearch,
   faArrowUp,
   faArrowDown
 } from "@fortawesome/free-solid-svg-icons";
 import "./App.css";
 
-library.add(
-  faFilm,
-  faUsers,
-  faMapMarkerAlt,
-  faKiwiBird,
-  faCar,
-  faSearch,
-  faArrowUp,
-  faArrowDown
-);
+library.add(faFilm, faUsers, faMapMarkerAlt, faSearch, faArrowUp, faArrowDown);
 
 class App extends Component {
   constructor(props) {
@@ -36,9 +26,10 @@ class App extends Component {
       movies: [],
       filterMovies: [],
       people: [],
+      location: [],
       search: "",
       isLoading: false,
-      menuChoice: "people"
+      menuChoice: "all"
     };
   }
 
@@ -96,6 +87,15 @@ class App extends Component {
     }
   };
 
+  fetchLocation = () => {
+    if (this.state.location.length === 0) {
+      const location = "https://ghibliapi.herokuapp.com/locations/";
+      fetch(location)
+        .then(res => res.json())
+        .then(data => this.setState({ location: data }));
+    }
+  };
+
   render() {
     const isLoading = this.state.isLoading;
 
@@ -111,7 +111,19 @@ class App extends Component {
       });
     } else if (menu === "people") {
       main = (
-        <Person fetchPeople={this.fetchPeople} people={this.state.people} />
+        <Person
+          fetchPeople={this.fetchPeople}
+          people={this.state.people}
+          movies={this.state.filterMovies}
+        />
+      );
+    } else if (menu === "locations") {
+      main = (
+        <Location
+          fetchLocation={this.fetchLocation}
+          locations={this.state.location}
+          movies={this.state.filterMovies}
+        />
       );
     }
 
@@ -123,6 +135,8 @@ class App extends Component {
             <Sidebar
               selected={this.state.menuChoice}
               moviesNumber={this.state.filterMovies.length}
+              peoplesNumber={this.state.people.length}
+              locationsNumber={this.state.location.length}
               handleMenu={this.handleMenu}
             />
             <Col role="main" className="col-md-10 ml-sm-auto main">
