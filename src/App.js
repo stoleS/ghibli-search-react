@@ -48,8 +48,8 @@ class App extends Component {
           filterMovies: data,
           isLoading: false
         })
-      );
-    /* .then(() =>
+      )
+      .then(() =>
         this.state.movies.forEach((element, i) => {
           const urlImage = `https://kitsu.io/api/edge/anime?filter[text]=${
             element.title
@@ -71,7 +71,7 @@ class App extends Component {
               })
             );
         })
-      ); */
+      );
   }
 
   onSearch = e => {

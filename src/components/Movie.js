@@ -14,7 +14,7 @@ class Movie extends Component {
           <CardImg
             top
             width="100%"
-            src="http://via.placeholder.com/320x440"
+            src={this.props.movie.image}
             alt="Card image cap"
             className="shadow-sm rounded"
           />
