@@ -12,6 +12,29 @@ import {
 } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
+const sortItems = [
+  {
+    name: "Year asc.",
+    arrow: "arrow-up",
+    checkedName: "yearAsc"
+  },
+  {
+    name: "Year desc.",
+    arrow: "arrow-down",
+    checkedName: "yearDesc"
+  },
+  {
+    name: "Rating asc.",
+    arrow: "arrow-up",
+    checkedName: "ratingAsc"
+  },
+  {
+    name: "Rating Desc.",
+    arrow: "arrow-down",
+    checkedName: "ratingDesc"
+  }
+];
+
 class Sidebar extends Component {
   render() {
     return (
@@ -65,31 +88,37 @@ class Sidebar extends Component {
             </NavItem>
             <DropdownItem divider />
             <FormGroup>
-              <Label for="exampleCheckbox">Sort by:</Label>
-              <FormGroup check>
-                <Label check>
-                  <Input type="radio" name="radio2" /> Year{" "}
-                  <FontAwesomeIcon icon="arrow-up" />
-                </Label>
-              </FormGroup>
-              <FormGroup check>
-                <Label check>
-                  <Input type="radio" name="radio2" /> Year{" "}
-                  <FontAwesomeIcon icon="arrow-down" />
-                </Label>
-              </FormGroup>
-              <FormGroup check>
-                <Label check>
-                  <Input type="radio" name="radio2" /> Rating{" "}
-                  <FontAwesomeIcon icon="arrow-up" />
-                </Label>
-              </FormGroup>
-              <FormGroup check>
-                <Label check>
-                  <Input type="radio" name="radio2" /> Rating{" "}
-                  <FontAwesomeIcon icon="arrow-down" />
-                </Label>
-              </FormGroup>
+              <Label
+                for="exampleCheckbox"
+                className={this.props.isDisabled === true ? "text-muted" : ""}
+              >
+                Sort by:
+              </Label>
+              {sortItems.map(sortItem => (
+                <FormGroup key={sortItem.name} check>
+                  <Label
+                    check
+                    className={
+                      this.props.isDisabled === true ? "text-muted" : ""
+                    }
+                  >
+                    <Input
+                      type="radio"
+                      name="radio2"
+                      checked={
+                        this.props.checked === sortItem.checkedName
+                          ? "checked"
+                          : ""
+                      }
+                      onChange={() =>
+                        this.props.handleChecked(sortItem.checkedName)
+                      }
+                      disabled={this.props.isDisabled}
+                    />{" "}
+                    {sortItem.name} <FontAwesomeIcon icon={sortItem.arrow} />
+                  </Label>
+                </FormGroup>
+              ))}
             </FormGroup>
           </Nav>
         </div>

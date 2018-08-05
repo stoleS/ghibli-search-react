@@ -26,10 +26,14 @@ class App extends Component {
       movies: [],
       filterMovies: [],
       people: [],
+      filterPeople: [],
       location: [],
+      filterLocation: [],
       search: "",
       isLoading: false,
-      menuChoice: "all"
+      menuChoice: "all",
+      checked: "yearAsc",
+      isDisabled: false
     };
   }
 
@@ -39,7 +43,11 @@ class App extends Component {
     fetch(url)
       .then(res => res.json())
       .then(data =>
-        this.setState({ movies: data, filterMovies: data, isLoading: false })
+        this.setState({
+          movies: data,
+          filterMovies: data,
+          isLoading: false
+        })
       );
     /* .then(() =>
         this.state.movies.forEach((element, i) => {
@@ -66,45 +74,116 @@ class App extends Component {
       ); */
   }
 
-  onSearch = e =>
-    this.setState({
-      search: e.target.value,
-      movies: this.state.filterMovies.filter(movie =>
-        new RegExp(e.target.value, "i").exec(movie.title)
-      )
-    });
+  onSearch = e => {
+    if (this.state.menuChoice === "all") {
+      this.setState({
+        search: e.target.value,
+        movies: this.state.filterMovies.filter(movie =>
+          new RegExp(e.target.value, "i").exec(movie.title)
+        )
+      });
+    } else if (this.state.menuChoice === "people") {
+      this.setState({
+        search: e.target.value,
+        people: this.state.filterPeople.filter(person =>
+          new RegExp(e.target.value, "i").exec(person.name)
+        )
+      });
+    } else if (this.state.menuChoice === "locations") {
+      this.setState({
+        search: e.target.value,
+        location: this.state.filterLocation.filter(location =>
+          new RegExp(e.target.value, "i").exec(location.name)
+        )
+      });
+    }
+  };
 
   handleMenu = choice => {
     this.setState({ menuChoice: choice });
+    if (choice !== "all") {
+      this.setState({ isDisabled: true });
+    } else {
+      this.setState({ isDisabled: false });
+    }
+  };
+
+  handleChecked = choice => {
+    this.setState({ checked: choice });
+    const sortedMovies = this.state.filterMovies;
+    if (choice === "yearDesc") {
+      sortedMovies.sort((a, b) => b.release_date - a.release_date);
+      this.setState({
+        filterMovies: sortedMovies,
+        movies: this.state.filterMovies.filter(movie =>
+          new RegExp(this.state.search, "i").exec(movie.title)
+        )
+      });
+    } else if (choice === "yearAsc") {
+      sortedMovies.sort((a, b) => a.release_date - b.release_date);
+      this.setState({
+        filterMovies: sortedMovies,
+        movies: this.state.filterMovies.filter(movie =>
+          new RegExp(this.state.search, "i").exec(movie.title)
+        )
+      });
+    } else if (choice === "ratingAsc") {
+      sortedMovies.sort((a, b) => a.rt_score - b.rt_score);
+      this.setState({
+        filterMovies: sortedMovies,
+        movies: this.state.filterMovies.filter(movie =>
+          new RegExp(this.state.search, "i").exec(movie.title)
+        )
+      });
+    } else if (choice === "ratingDesc") {
+      sortedMovies.sort((a, b) => b.rt_score - a.rt_score);
+      this.setState({
+        filterMovies: sortedMovies,
+        movies: this.state.filterMovies.filter(movie =>
+          new RegExp(this.state.search, "i").exec(movie.title)
+        )
+      });
+    }
   };
 
   fetchPeople = () => {
     if (this.state.people.length === 0) {
+      this.setState({ isLoading: true });
       const people = "https://ghibliapi.herokuapp.com/people/";
       fetch(people)
         .then(res => res.json())
-        .then(data => this.setState({ people: data }));
+        .then(data =>
+          this.setState({ people: data, filterPeople: data, isLoading: false })
+        );
     }
   };
 
   fetchLocation = () => {
     if (this.state.location.length === 0) {
+      this.setState({ isLoading: true });
       const location = "https://ghibliapi.herokuapp.com/locations/";
       fetch(location)
         .then(res => res.json())
-        .then(data => this.setState({ location: data }));
+        .then(data =>
+          this.setState({
+            location: data,
+            filterLocation: data,
+            isLoading: false
+          })
+        );
     }
   };
 
   render() {
     const isLoading = this.state.isLoading;
+    const menu = this.state.menuChoice;
+    let main, loading;
+    console.log(isLoading);
 
     if (isLoading) {
-      return <p>Loading ...</p>;
+      loading = <h1 className="display-1">Loading...</h1>;
     }
 
-    const menu = this.state.menuChoice;
-    let main;
     if (menu === "all") {
       main = this.state.movies.map(movie => {
         return <Movie key={movie.id} movie={movie} />;
@@ -134,13 +213,19 @@ class App extends Component {
           <Row>
             <Sidebar
               selected={this.state.menuChoice}
-              moviesNumber={this.state.filterMovies.length}
+              checked={this.state.checked}
+              moviesNumber={this.state.movies.length}
               peoplesNumber={this.state.people.length}
               locationsNumber={this.state.location.length}
               handleMenu={this.handleMenu}
+              handleChecked={this.handleChecked}
+              isDisabled={this.state.isDisabled}
             />
             <Col role="main" className="col-md-10 ml-sm-auto main">
-              <Row className="pt-4">{main}</Row>
+              <Row className="pt-4">
+                {main}
+                {loading}
+              </Row>
             </Col>
           </Row>
         </Container>
