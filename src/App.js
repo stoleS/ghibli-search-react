@@ -5,6 +5,7 @@ import Sidebar from "./components/Sidebar";
 import Movie from "./components/Movie";
 import Person from "./components/Person";
 import Location from "./components/Location";
+import Loader from "./components/Loader";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { Container, Row, Col } from "reactstrap";
 import {
@@ -48,8 +49,8 @@ class App extends Component {
           filterMovies: data,
           isLoading: false
         })
-      )
-      .then(() =>
+      );
+    /* .then(() =>
         this.state.movies.forEach((element, i) => {
           const urlImage = `https://kitsu.io/api/edge/anime?filter[text]=${
             element.title
@@ -70,8 +71,8 @@ class App extends Component {
                 })
               })
             );
-        })
-      );
+        }) 
+      );*/
   }
 
   onSearch = e => {
@@ -178,10 +179,9 @@ class App extends Component {
     const isLoading = this.state.isLoading;
     const menu = this.state.menuChoice;
     let main, loading;
-    console.log(isLoading);
 
     if (isLoading) {
-      loading = <h1 className="display-1">Loading...</h1>;
+      loading = <Loader />;
     }
 
     if (menu === "all") {
@@ -224,9 +224,10 @@ class App extends Component {
             <Col role="main" className="col-md-10 ml-sm-auto main">
               <Row className="pt-4">
                 {main}
-                {loading}
               </Row>
+              {loading}
             </Col>
+           
           </Row>
         </Container>
       </div>

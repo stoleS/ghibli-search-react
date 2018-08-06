@@ -142,11 +142,36 @@ body {
 .main {
   padding-left: 50px !important;
   padding-right: 50px !important;
+  min-height: 100vh !important;
 }
 
 /*
  * Main
  */
+
+.popover-title {
+  color: var(--rich-black) !important;
+  margin-bottom: 0.5rem;
+  line-height: 1;
+  font-size: 0.9rem;
+}
+
+.popover-subtitle {
+  font-size: 0.75rem;
+}
+
+.popover-description {
+  font-size: 0.8rem !important;
+}
+
+.popover {
+  max-width: 400px !important;
+  border: none !important;
+}
+
+.popover-body {
+  padding: 2rem !important;
+}
 
 .title {
   color: var(--rich-black);
@@ -166,11 +191,11 @@ body {
 .card-container {
   transition: box-shadow, background-color 0.2s ease-in-out;
   padding: 25px !important;
+  cursor: pointer;
 }
 
 .card {
   border-radius: 0 !important;
-  cursor: pointer;
   border: none !important;
   background-color: transparent !important;
 }
@@ -211,6 +236,13 @@ body {
 
 .form-check-label {
   padding-bottom: 0.3rem !important;
+}
+
+.spinner {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  left: 50%;
 }
 
 /*
