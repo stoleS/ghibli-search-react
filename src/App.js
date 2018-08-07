@@ -7,18 +7,27 @@ import Person from "./components/Person";
 import Location from "./components/Location";
 import Loader from "./components/Loader";
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { Container, Row, Col } from "reactstrap";
+import { Container, Row, Col, Nav, Collapse } from "reactstrap";
 import {
   faFilm,
   faUsers,
   faMapMarkerAlt,
   faSearch,
   faArrowUp,
-  faArrowDown
+  faArrowDown,
+  faBars
 } from "@fortawesome/free-solid-svg-icons";
 import "./App.css";
 
-library.add(faFilm, faUsers, faMapMarkerAlt, faSearch, faArrowUp, faArrowDown);
+library.add(
+  faFilm,
+  faUsers,
+  faMapMarkerAlt,
+  faSearch,
+  faArrowUp,
+  faArrowDown,
+  faBars
+);
 
 class App extends Component {
   constructor(props) {
@@ -34,7 +43,8 @@ class App extends Component {
       isLoading: false,
       menuChoice: "all",
       checked: "yearAsc",
-      isDisabled: false
+      isDisabled: false,
+      sidebarCollapsed: false
     };
   }
 
@@ -175,6 +185,13 @@ class App extends Component {
     }
   };
 
+  toggleNavbar = () => {
+    console.log("click");
+    this.setState({
+      sidebarCollapsed: !this.state.sidebarCollapsed
+    });
+  };
+
   render() {
     const isLoading = this.state.isLoading;
     const menu = this.state.menuChoice;
@@ -206,28 +223,41 @@ class App extends Component {
       );
     }
 
+    let collapsed = "";
+    if (this.state.sidebarCollapsed) collapsed = "d-none";
+    else collapsed = "d-block";
+
     return (
       <div>
-        <SearchBar onSearch={this.onSearch} />
+        <SearchBar
+          onSearch={this.onSearch}
+          isCollapsed={this.state.sidebarCollapsed}
+          toggleNavbar={this.toggleNavbar}
+        />
         <Container fluid>
           <Row>
-            <Sidebar
-              selected={this.state.menuChoice}
-              checked={this.state.checked}
-              moviesNumber={this.state.movies.length}
-              peoplesNumber={this.state.people.length}
-              locationsNumber={this.state.location.length}
-              handleMenu={this.handleMenu}
-              handleChecked={this.handleChecked}
-              isDisabled={this.state.isDisabled}
-            />
-            <Col role="main" className="col-md-10 ml-sm-auto main">
-              <Row className="pt-4">
-                {main}
-              </Row>
+            <Collapse
+              className="col-md-2 col-sm-3 col-5 sidebar"
+              isOpen={!this.state.sidebarCollapsed}
+              navbar
+            >
+              <Nav className={`${collapsed} navbar-dark bg-dark-blue `}>
+                <Sidebar
+                  selected={this.state.menuChoice}
+                  checked={this.state.checked}
+                  moviesNumber={this.state.movies.length}
+                  peoplesNumber={this.state.people.length}
+                  locationsNumber={this.state.location.length}
+                  handleMenu={this.handleMenu}
+                  handleChecked={this.handleChecked}
+                  isDisabled={this.state.isDisabled}
+                />
+              </Nav>
+            </Collapse>
+            <Col role="main" className="col-md-10 ml-auto main">
+              <Row className="pt-4">{main}</Row>
               {loading}
             </Col>
-           
           </Row>
         </Container>
       </div>
