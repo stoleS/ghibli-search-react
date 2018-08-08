@@ -15,11 +15,8 @@ class SearchBar extends Component {
   render() {
     return (
       <div>
-        <Navbar
-          expand="lg"
-          className="navbar-dark fixed-top bg-imperial flex-md-nowrap p-0 shadow"
-        >
-          <NavbarBrand href="/" className="col-sm-3 col-md-2 mr-0">
+        <Navbar className="navbar-dark fixed-top bg-imperial flex-md-nowrap p-0 shadow">
+          <NavbarBrand href="/" className="col-sm-12 col-md-2 mr-0">
             <FontAwesomeIcon icon="search" /> Ghibli Search
           </NavbarBrand>
           <Input

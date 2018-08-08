@@ -59,6 +59,16 @@ body {
  * Sidebar
  */
 
+@media only screen and (max-width: 768px) {
+  /* For mobile phones: */
+  .sidebar-transparent {
+    background-color: rgba(47, 36, 58, 0.7) !important;
+  }
+  .sidebar {
+    margin-top: 84px !important; /* Height of stacked searchbar + initial padding */
+  }
+}
+
 .sidebar {
   position: fixed !important;
   top: 0;

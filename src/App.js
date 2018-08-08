@@ -59,8 +59,8 @@ class App extends Component {
           filterMovies: data,
           isLoading: false
         })
-      );
-    /* .then(() =>
+      )
+      .then(() =>
         this.state.movies.forEach((element, i) => {
           const urlImage = `https://kitsu.io/api/edge/anime?filter[text]=${
             element.title
@@ -81,8 +81,8 @@ class App extends Component {
                 })
               })
             );
-        }) 
-      );*/
+        })
+      );
   }
 
   onSearch = e => {
@@ -241,7 +241,9 @@ class App extends Component {
               isOpen={!this.state.sidebarCollapsed}
               navbar
             >
-              <Nav className={`${collapsed} navbar-dark bg-dark-blue `}>
+              <Nav
+                className={`${collapsed} navbar-dark bg-dark-blue sidebar-transparent`}
+              >
                 <Sidebar
                   selected={this.state.menuChoice}
                   checked={this.state.checked}
